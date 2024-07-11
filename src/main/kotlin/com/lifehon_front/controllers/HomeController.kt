@@ -1,25 +1,20 @@
 package com.lifehon_front.controllers
 
 import com.HobbiesQuery
-import com.apollographql.apollo3.ApolloClient
+import com.lifehon_front.service.ApolloServerConnector
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
-class HomeController {
+class HomeController(val apolloServerConnector: ApolloServerConnector) {
 
     @GetMapping("/")
-    suspend fun blog(model: Model): String {
-        val apolloClient = ApolloClient.Builder()
-            .serverUrl("http://localhost:8600/front-api/v1/")
-            .build()
+    suspend fun home(model: Model): String {
+        val response = apolloServerConnector.apolloClient.query(HobbiesQuery()).execute();
 
-        val response = apolloClient.query(HobbiesQuery()).execute();
-
-        model["hobbies"] = response.data
-        model["fun"] = "heh"
-        return "blog"
+        model["hobbies"] = response.data?.hobbies
+        return "home"
     }
 }
