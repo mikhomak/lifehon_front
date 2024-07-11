@@ -19,6 +19,7 @@ class HomeController {
         val response = apolloClient.query(HobbiesQuery()).execute();
 
         model["hobbies"] = response.data
+        model["fun"] = "heh"
         return "blog"
     }
 }
