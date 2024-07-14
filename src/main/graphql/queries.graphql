@@ -22,3 +22,7 @@ mutation createUser($name: String!, $email: String!, $password: String!, $consen
         name
     }
 }
+
+mutation login($name: String!, $password: String!){
+    loginUser(loginInput: {name: $name, password: $password})
+}

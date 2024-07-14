@@ -1,5 +1,6 @@
 package com.lifehon_front.controllers
 
+import com.LoginMutation
 import com.lifehon_front.service.ApolloServerConnector
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -18,6 +19,12 @@ class LoginController(val apolloServerConnector: ApolloServerConnector) {
     @PostMapping("/login")
     suspend fun doLogin(userName: String, password: String, model: Model): String {
 
-        return "login"
+        val loginResponse = apolloServerConnector.apolloClient.mutation(LoginMutation(userName, password)).execute();
+
+        if (loginResponse.hasErrors()) {
+            return "login";
+        }
+
+        return "home"
     }
 }

@@ -102,14 +102,24 @@ The `Int` scalar type represents non-fractional whole numeric values.
 """
 scalar Int
 
+input LoginInput {
+  name: String!
+
+  password: String!
+}
+
 type Mutations {
   createUser(userInput: UserRegistrationInput!): GqlUser!
 
   addTask(createTaskInput: GqlCreateTaskInput!): GqlTask!
+
+  loginUser(loginInput: LoginInput!): String!
 }
 
 type Query {
   users: [GqlUser!]!
+
+  getUserForName(userName: String!): GqlUser!
 
   hobbies: [GqlHobby!]!
 }
