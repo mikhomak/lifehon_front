@@ -2,6 +2,7 @@ package com.lifehon_front.controllers
 
 import com.CreateUserMutation
 import com.lifehon_front.controllers.forms.RegisterForm
+import com.lifehon_front.logger
 import com.lifehon_front.service.ApolloServerConnector
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -37,7 +38,11 @@ class RegisterController(val apolloServerConnector: ApolloServerConnector) {
         ).execute();
 
         if (createUserResult.hasErrors()) {
-
+            logger.error {
+                "There was an error while registering user [${registerForm.name}], the error is [${
+                    createUserResult.errors?.map { error -> error.message }?.joinToString { " , " }
+                }]"
+            }
             model.addAttribute("registerForm", registerForm);
             return "register";
         }
