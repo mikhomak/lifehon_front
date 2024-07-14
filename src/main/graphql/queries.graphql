@@ -14,3 +14,11 @@ query users{
         }
     }
 }
+
+mutation createUser($name: String!, $email: String!, $password: String!, $consent: Boolean!, $publicProfile: Boolean!){
+    createUser(userInput:{name: $name, email: $email, password: $password, consent: $consent, publicProfile: $publicProfile} ){
+        id
+        email
+        name
+    }
+}

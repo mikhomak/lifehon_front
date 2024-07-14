@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main>
+    <div th:replace="~{components/header :: header}">Header</div>
+    <div>
+        <form action="#" th:action="@{/register}" th:object="${registerForm}" method="post">
+            <label>
+                Name:
+                <input type="text" name="name"/>
+            </label>
+            <label>
+                Email:
+                <input type="text" name="email"/>
+            </label>
+            <label>
+                Password:
+                <input type="text" name="password"/>
+            </label>
+            <label>
+                Consent:
+                <input type="checkbox" name="consent"/>
+            </label>
+            <label>
+                Public profile:
+                <input type="checkbox" name="publicProfile"/>
+            </label>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>
