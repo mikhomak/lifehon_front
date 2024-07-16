@@ -122,6 +122,8 @@ type Query {
   getUserForName(userName: String!): GqlUser!
 
   hobbies: [GqlHobby!]!
+
+  checkToken(token: String!): Boolean!
 }
 
 """
