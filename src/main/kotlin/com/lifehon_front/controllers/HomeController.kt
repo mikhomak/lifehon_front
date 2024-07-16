@@ -20,4 +20,15 @@ class HomeController(val apolloServerConnector: ApolloServerConnector) {
         model["users"] = usersResponse.data?.users
         return "home"
     }
+
+
+    @GetMapping("/about")
+    suspend fun about(model: Model): String {
+        val usersResponse = apolloServerConnector.apolloClient.query(UsersQuery()).execute();
+
+        model["users"] = usersResponse.data?.users
+        return "about"
+    }
+
+
 }

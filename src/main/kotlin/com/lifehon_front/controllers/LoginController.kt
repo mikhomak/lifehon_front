@@ -1,11 +1,9 @@
 package com.lifehon_front.controllers
 
-import com.LoginMutation
 import com.lifehon_front.service.ApolloServerConnector
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
 class LoginController(val apolloServerConnector: ApolloServerConnector) {
@@ -16,15 +14,5 @@ class LoginController(val apolloServerConnector: ApolloServerConnector) {
         return "login"
     }
 
-    @PostMapping("/login")
-    suspend fun doLogin(userName: String, password: String, model: Model): String {
 
-        val loginResponse = apolloServerConnector.apolloClient.mutation(LoginMutation(userName, password)).execute();
-
-        if (loginResponse.hasErrors()) {
-            return "login";
-        }
-
-        return "home"
-    }
 }

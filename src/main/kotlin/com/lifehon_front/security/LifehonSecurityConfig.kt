@@ -18,10 +18,14 @@ class LifehonSecurityConfig {
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.invoke {
             authorizeRequests {
-                authorize("/", hasAuthority("USER"))
+                authorize("/login", permitAll)
+                authorize("/about", hasAuthority("USER"))
                 authorize("/register", hasAuthority("ANONYMOUS"))
             }
-            formLogin {  }
+            formLogin {
+                loginPage = "/login"
+                defaultSuccessUrl("/", true)
+            }
             httpBasic { }
         }
         return http.build();

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main>
+    <div th:replace="~{components/header :: header}">Header</div>
+    <h3>about page</h3>
+    <div>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+        </tr>
+    </div>
+</main>
+</body>
+</html>
