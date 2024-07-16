@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main>
+    <div th:replace="~{components/header :: header}">Header</div>
+    <div>
+        <h3>Name:</h3>
+        <td th:text="${user.name}"/>
+        <h3>Hobbies:</h3>
+        <tr th:each="hobby : ${user.hobbies}">
+            <td th:text="${hobby.name}"/>
+        </tr>
+        <h3>Tasks:</h3>
+        <tr th:each="task : ${user.tasks.tasks}">
+            <td th:text="${task.name}"/>
+        </tr>
+
+    </div>
+</main>
+</body>
+</html>

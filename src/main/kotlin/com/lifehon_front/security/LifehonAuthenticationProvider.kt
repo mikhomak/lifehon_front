@@ -27,10 +27,12 @@ class LifehonAuthenticationProvider(private val apolloServerConnector: ApolloSer
             throw UsernameNotFoundException("Cannot login!");
         }
         val userAuthority = SimpleGrantedAuthority("USER");
-        return UsernamePasswordAuthenticationToken(
+        val tokenAuth = UsernamePasswordAuthenticationToken(
             authentication.name, authentication.credentials,
             listOf(userAuthority)
-        );
+        )
+        tokenAuth.details = gqlLoginResponse.data?.loginUser;
+        return tokenAuth;
     }
 
     override fun supports(authentication: Class<*>?): Boolean {

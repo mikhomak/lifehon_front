@@ -15,6 +15,28 @@ query users{
     }
 }
 
+query userForName($user_name: String!, $page : Int!){
+    getUserForName(userName:$user_name){
+        name
+        hobbies{
+            name
+        }
+        tasks(page:$page){
+            tasks{
+                id
+                name
+                description
+                createdAt
+                finishedAt
+                hobbyName
+            }
+        }
+        hobbies{
+            name
+        }
+    }
+}
+
 mutation createUser($name: String!, $email: String!, $password: String!, $consent: Boolean!, $publicProfile: Boolean!){
     createUser(userInput:{name: $name, email: $email, password: $password, consent: $consent, publicProfile: $publicProfile} ){
         id
