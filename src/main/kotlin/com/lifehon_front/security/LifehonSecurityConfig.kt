@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.security.web.authentication.AnonymousAuthenticationFilter
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 
 
 @Configuration
@@ -31,7 +31,7 @@ class LifehonSecurityConfig(
                 loginPage = "/login"
                 defaultSuccessUrl("/", true)
             }
-            addFilterAt<AnonymousAuthenticationFilter>(
+            addFilterAt<BasicAuthenticationFilter>(
                 LifehonGqlAuthFilter(apolloServerConnector)
             )
             httpBasic { }

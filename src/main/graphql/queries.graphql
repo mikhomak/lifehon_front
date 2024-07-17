@@ -38,7 +38,14 @@ query userForName($user_name: String!, $page : Int!){
 }
 
 query checkToken($token: String!){
-    checkToken(token: $token)
+    checkToken(token: $token){
+        name
+        email
+        loginEnabled
+        hobbies{
+            name
+        }
+    }
 }
 
 mutation createUser($name: String!, $email: String!, $password: String!, $consent: Boolean!, $publicProfile: Boolean!){

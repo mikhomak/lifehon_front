@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 </head>
 <body>
 <nav th:fragment="header">
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
+        <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
         <li><a href="/about">About</a></li>
+        <th:block sec:authorize="isAuthenticated()">
+            <li><a th:href="@{|/account/${current_user.name}|}">My account [[|[${current_user.name}]|]] </a></li>
+            <li><a th:href="@{/logout}">Log out</a></li>
+        </th:block>
     </ul>
 </nav>
 </body>
