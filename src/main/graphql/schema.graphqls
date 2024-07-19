@@ -15,6 +15,12 @@ The `Float` scalar type represents signed double-precision fractional values as 
 """
 scalar Float
 
+type GqlAddHobbyToUserOutput {
+  userName: String!
+
+  hobbyName: String!
+}
+
 input GqlCreateTaskInput {
   id: UUID!
 
@@ -92,6 +98,8 @@ type GqlUser {
 
   hobbies: [GqlHobby!]!
 
+  allAvailableHobbies: [GqlHobby!]!
+
   tasks(page: Int!): GqlTasksPagination!
 }
 
@@ -112,6 +120,8 @@ type Mutations {
   createUser(userInput: UserRegistrationInput!): GqlUser!
 
   addTask(createTaskInput: GqlCreateTaskInput!): GqlTask!
+
+  addHobby(userName: String!, hobbyName: String!): GqlAddHobbyToUserOutput!
 
   loginUser(loginInput: LoginInput!): String!
 }

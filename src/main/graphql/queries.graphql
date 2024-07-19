@@ -15,7 +15,7 @@ query users{
     }
 }
 
-query userForName($user_name: String!, $page : Int!){
+query getUserForName($user_name: String!, $page : Int!){
     getUserForName(userName:$user_name){
         name
         hobbies{
@@ -30,6 +30,9 @@ query userForName($user_name: String!, $page : Int!){
                 finishedAt
                 hobbyName
             }
+        }
+        allAvailableHobbies{
+            name
         }
         hobbies{
             name
@@ -58,4 +61,11 @@ mutation createUser($name: String!, $email: String!, $password: String!, $consen
 
 mutation login($name: String!, $password: String!){
     loginUser(loginInput: {name: $name, password: $password})
+}
+
+mutation addHobbyToUser($userName:String!, $hobbyName:String!){
+    addHobby(userName: $userName, hobbyName: $hobbyName){
+        userName
+        hobbyName
+    }
 }
