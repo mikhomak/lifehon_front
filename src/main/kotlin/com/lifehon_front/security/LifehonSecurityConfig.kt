@@ -23,9 +23,9 @@ class LifehonSecurityConfig(
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.invoke {
             authorizeRequests {
-                authorize("/login", permitAll)
+                authorize("/login", anonymous)
                 authorize("/about", hasAuthority("USER"))
-                authorize("/register", hasAuthority("ANONYMOUS"))
+                authorize("/register", anonymous)
             }
             formLogin {
                 loginPage = "/login"

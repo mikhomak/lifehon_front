@@ -23,7 +23,7 @@
                     <input type="radio" name="hobbyName" th:value="${hobby.name}"/>
                     <label th:text="${hobby.name}"></label>
                 </th:block>
-                <button type="submit">submit</button>
+                <button type="submit" th:disabled="${user.allAvailableHobbies.size() == 0 ? 'disabled' : ''}">submit</button>
             </form>
         </div>
     </div>

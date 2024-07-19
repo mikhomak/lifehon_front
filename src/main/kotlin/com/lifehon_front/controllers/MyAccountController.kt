@@ -41,6 +41,7 @@ class MyAccountController(val apolloServerConnector: ApolloServerConnector) {
                 };
                 LifehonUtils.addErrorToModel("Error at adding the hobby", model);
             } else {
+                LifehonUtils.addSuccessToModel("Hobby ${hobbyName}!", model);
                 logger.info { "Added hobby [$hobbyName] to user [$it]" };
             }
             return "redirect:/account/${it}";

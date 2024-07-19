@@ -21,5 +21,17 @@ class LifehonUtils {
 
             model.addAttribute(errorsAttribute)
         }
+
+        fun addSuccessToModel(error: String, model: Model) {
+            var successAttribute: MutableList<String>? = model.getAttribute("success_message") as? MutableList<String>;
+
+            if (successAttribute == null) {
+                successAttribute = mutableListOf(error);
+            } else {
+                successAttribute.add(error);
+            }
+
+            model.addAttribute(successAttribute)
+        }
     }
 }
