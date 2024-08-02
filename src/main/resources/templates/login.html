@@ -7,10 +7,10 @@
     <div th:replace="~{components/header :: header}">Header</div>
     <div>
         <form th:action="login" name="f" method="post">
-            <label>
+            <label>username:
                 <input type="text" name="username"/>
             </label>
-            <label>
+            <label>password:
                 <input type="password" name="password"/>
             </label>
             <button type="submit" value="submit">Submit</button>
